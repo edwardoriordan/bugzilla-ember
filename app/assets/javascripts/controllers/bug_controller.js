@@ -1,6 +1,16 @@
 App.BugController = Ember.ObjectController.extend({
-  pollingInterval: 30 * 1000,
+  isShowingRemainingComments: false,
 
+  keywords: function() {
+    var keywords = this.get('content.keywords');
+    return keywords && keywords.join(', ')
+  }.property('content.keywords'),
+
+  showRemainingComments: function() {
+    this.set('isShowingRemainingComments', true);
+  },
+
+  _pollingInterval: 30 * 1000,
   _pollingTimer: null,
 
   _contentWillChange: function() {
@@ -13,6 +23,6 @@ App.BugController = Ember.ObjectController.extend({
     this._pollingTimer = Ember.run.later(this, function() {
       this.get('content').reload();
       this._contentDidChange();
-    }, this.pollingInterval);
+    }, this._pollingInterval);
   }.observes('content')
 });
