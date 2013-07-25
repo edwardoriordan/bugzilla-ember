@@ -1,6 +1,9 @@
+<div class="container browse-table-filters">
 {{select contentBinding="products" prompt="[Product]" selectionBinding="selectedProduct" optionLabelPath="content.name" optionValuePath="content.id"}}
 {{select contentBinding="components" prompt="[Component]" selectionBinding="selectedComponent" optionLabelPath="content.name" optionValuePath="content.id"}}
-<table cellspacing="0" cellpadding="4" width="100%" class="browse-table">
+</div>
+
+<table cellspacing="0" cellpadding="4" width="100%" class="browse-table container">
   <thead>
     <tr>
       {{view 'browse-column-header' column="id" title="ID"}}
